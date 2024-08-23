@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Calculator</title>
+    <style>
+        /* Simple CSS to style the calculator */
+        .calculator {
+            width: 200px;
+            margin: 100px auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .display {
+            width: 100%;
+            height: 40px;
+            text-align: right;
+            margin-bottom: 10px;
+            font-size: 18px;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        .button {
+            width: 23%;
+            height: 40px;
+            margin: 1%;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <input type="text" id="display" class="display" disabled>
+    <button class="button" onclick="clearDisplay()">C</button>
+    <button class="button" onclick="deleteLast()">DEL</button>
+    <button class="button" onclick="appendCharacter('/')">/</button>
+    <button class="button" onclick="appendCharacter('*')">*</button>
+    <button class="button" onclick="appendCharacter('7')">7</button>
+    <button class="button" onclick="appendCharacter('8')">8</button>
+    <button class="button" onclick="appendCharacter('9')">9</button>
+    <button class="button" onclick="appendCharacter('-')">-</button>
+    <button class="button" onclick="appendCharacter('4')">4</button>
+    <button class="button" onclick="appendCharacter('5')">5</button>
+    <button class="button" onclick="appendCharacter('6')">6</button>
+    <button class="button" onclick="appendCharacter('+')">+</button>
+    <button class="button" onclick="appendCharacter('1')">1</button>
+    <button class="button" onclick="appendCharacter('2')">2</button>
+    <button class="button" onclick="appendCharacter('3')">3</button>
+    <button class="button" onclick="calculate()">=</button>
+    <button class="button" onclick="appendCharacter('0')">0</button>
+    <button class="button" onclick="appendCharacter('.')">.</button>
+</div>
+
+<script>
+    // JavaScript code will go here
+    // Display এ মান যোগ করার ফাংশন
+function appendCharacter(character) {
+    document.getElementById("display").value += character;
+}
+
+// Display পরিষ্কার করার ফাংশন
+function clearDisplay() {
+    document.getElementById("display").value = '';
+}
+
+// শেষ অক্ষর মুছে ফেলার ফাংশন
+function deleteLast() {
+    let currentValue = document.getElementById("display").value;
+    document.getElementById("display").value = currentValue.slice(0, -1);
+}
+
+// গাণিতিক গণনা করার ফাংশন
+function calculate() {
+    let expression = document.getElementById("display").value;
+    try {
+        // eval() ফাংশন দিয়ে গাণিতিক গণনা করা হচ্ছে
+        document.getElementById("display").value = eval(expression);
+    } catch (error) {
+        document.getElementById("display").value = 'error';
+    }
+}
+
+</script>
+
+</body>
+</html>
